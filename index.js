@@ -1,6 +1,7 @@
 import express from "express"
 import "dotenv/config"
 import mongoose from "mongoose"
+import addRoutes from "./config/routes.config.js"
 
 mongoose.connect(process.env.MONGO_URL, (err) => {
   if (err) {
@@ -12,9 +13,7 @@ mongoose.connect(process.env.MONGO_URL, (err) => {
 
 const app = express()
 
-app.get("/", (req, res) => {
-  res.send("<code>api is working</code>")
-})
+addRoutes(app)
 
 app.listen(process.env.PORT, () => {
   console.log(`server started at ${process.env.PORT}`)
